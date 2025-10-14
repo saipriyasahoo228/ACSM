@@ -85,16 +85,22 @@ const TrainingPlanner = () => {
       </Typography>
 
       <Button
-        variant="contained"
-        color="primary"
+        variant="outlined"
+        
         startIcon={<AddCircleOutline />}
         onClick={handleOpen}
-        sx={{ mb: 2 }}
+        sx={{ mb: 2 ,color: "#0E4C92" }}
       >
         Schedule New Training
       </Button>
 
-      <Card>
+      <Card
+      sx={{
+          borderLeft: "6px solid #082A52",
+          boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
+          borderRadius: 2,
+        }}
+      >
         <CardContent>
           <Table>
             <TableHead sx={{ background: "#E3EAFD" }}>

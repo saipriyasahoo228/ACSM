@@ -181,7 +181,13 @@ const TrainingPrograms = () => {
 
   return (
     <Box p={3}>
-      <Card>
+      <Card
+      sx={{
+          borderLeft: "6px solid #082A52",
+          boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
+          borderRadius: 2,
+        }}
+      >
         <CardContent>
           <Box
             display="flex"
@@ -201,7 +207,7 @@ const TrainingPrograms = () => {
 
           {/* Table of programs */}
           <Table>
-            <TableHead>
+            <TableHead sx={{ background: "#E3EAFD" }}>
               <TableRow>
                 <TableCell>Mode</TableCell>
                 <TableCell>Name</TableCell>

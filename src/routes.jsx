@@ -88,28 +88,33 @@ const routes = [
       },
       {
         exact: 'true',
-        path: '/forms/form-basic',
-        element: lazy(() => import('./views/forms/FormsElements'))
+        path: '/permittype',
+        element: lazy(() => import('./views/permittowork/permittype'))
       },
       {
         exact: 'true',
-        path: '/tables/bootstrap',
-        element: lazy(() => import('./views/tables/BootstrapTable'))
+        path: '/permitworkflow',
+        element: lazy(() => import('./views/permittowork/permitworkflow'))
       },
       {
         exact: 'true',
-        path: '/charts/nvd3',
-        element: lazy(() => import('./views/charts/nvd3-chart'))
+        path: '/workercompetency',
+        element: lazy(() => import('./views/permittowork/workercompetency'))
       },
       {
         exact: 'true',
-        path: '/maps/google-map',
-        element: lazy(() => import('./views/maps/GoogleMaps'))
+        path: '/permitrequest&statustracker',
+        element: lazy(() => import('./views/permittowork/permitrequestandstatustracker'))
       },
       {
         exact: 'true',
-        path: '/sample-page',
-        element: lazy(() => import('./views/extra/SamplePage'))
+        path: '/permithistory&reporting',
+        element: lazy(() => import('./views/permittowork/permithistory&reporting'))
+      },
+      {
+        exact: 'true',
+        path: '/permitdashboard',
+        element: lazy(() => import('./views/permittowork/permitdashboard'))
       },
       {
         path: '*',

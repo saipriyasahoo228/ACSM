@@ -1,288 +1,4 @@
 
-// import React, { useState } from "react";
-// import {
-//   Box,
-//   Button,
-//   Card,
-//   CardContent,
-//   Dialog,
-//   DialogActions,
-//   DialogContent,
-//   DialogTitle,
-//   TextField,
-//   MenuItem,
-//   Table,
-//   TableBody,
-//   TableCell,
-//   TableHead,
-//   TableRow,
-//   Typography,
-//   IconButton,
-//   Chip,
-//   Grid,
-//   Divider,
-//   Select,
-//   FormControl,
-//   InputLabel,
-//   Tooltip,
-//   OutlinedInput
-// } from "@mui/material";
-// import { Edit, Visibility, Add, Delete, Save } from "@mui/icons-material";
-
-// const statusColors = {
-//   Assigned: "#1976d2",
-//   Completed: "#2e7d32",
-//   Expired: "#d32f2f",
-// };
-
-// const defaultTrainingPrograms = [
-//   { id: 1, name: "Electrical Safety" },
-//   { id: 2, name: "OSHA Compliance" },
-//   { id: 3, name: "Advanced Plumbing" },
-//   { id: 4, name: "Scaffolding Safety" },
-//   { id: 5, name: "Equipment Operation" },
-// ];
-
-// const employees = [
-//   { id: 1, name: "John Doe", email: "john@example.com", site: "Site A", trade: "Electrician" },
-//   { id: 2, name: "Jane Smith", email: "jane@example.com", site: "Site B", trade: "Plumber" },
-//   { id: 3, name: "Ravi Kumar", email: "ravi@example.com", site: "Site C", trade: "Welder" },
-// ];
-
-// const WorkerAssignment = () => {
-//   const [workers, setWorkers] = useState([]);
-//   const [assignDialogOpen, setAssignDialogOpen] = useState(false);
-
-//   const [formData, setFormData] = useState({
-//     selectedEmployees: [], // multiple employees
-//     trainings: [] // {programId, mode, status}
-//   });
-
-//   const handleAssignDialogOpen = () => {
-//     setFormData({ selectedEmployees: [], trainings: [] });
-//     setAssignDialogOpen(true);
-//   };
-
-//   const handleAssignDialogClose = () => setAssignDialogOpen(false);
-
-//   const handleTrainingSelect = (selectedIds) => {
-//     const newTrainings = selectedIds.map((id) => {
-//       const existing = formData.trainings.find((t) => t.programId === id);
-//       return existing || { programId: id, mode: "Online", status: "Assigned" };
-//     });
-//     setFormData({ ...formData, trainings: newTrainings });
-//   };
-
-//   const handleTrainingChange = (programId, key, value) => {
-//     const updated = formData.trainings.map((t) =>
-//       t.programId === programId ? { ...t, [key]: value } : t
-//     );
-//     setFormData({ ...formData, trainings: updated });
-//   };
-
-//   const handleSubmitAssignment = () => {
-//     const newAssignments = formData.selectedEmployees.map((empId) => {
-//       const emp = employees.find((e) => e.id === empId);
-//       return {
-//         id: workers.length + Math.random(), // unique id
-//         ...emp,
-//         trainings: formData.trainings,
-//       };
-//     });
-
-//     setWorkers((prev) => [...prev, ...newAssignments]);
-//     handleAssignDialogClose();
-//   };
-
-//   const handleDeleteWorker = (id) => {
-//     setWorkers((prev) => prev.filter((w) => w.id !== id));
-//   };
-
-//   return (
-//     <Box p={3}>
-//       <Box display="flex" justifyContent="space-between" mb={3}>
-//         <Typography variant="h4" color="primary">
-//           Worker Assignment
-//         </Typography>
-//         <Button
-//           variant="contained"
-//           startIcon={<Add />}
-//           onClick={handleAssignDialogOpen}
-//         >
-//           Assign Training
-//         </Button>
-//       </Box>
-
-//       {/* Worker Table */}
-//       <Card>
-//         <CardContent>
-//           <Table>
-//             <TableHead>
-//               <TableRow>
-//                 <TableCell>Name</TableCell>
-//                 <TableCell>Site</TableCell>
-//                 <TableCell>Trade</TableCell>
-//                 <TableCell>Email</TableCell>
-//                 <TableCell>Trainings</TableCell>
-//                 <TableCell>Actions</TableCell>
-//               </TableRow>
-//             </TableHead>
-//             <TableBody>
-//               {workers.length > 0 ? (
-//                 workers.map((w) => (
-//                   <TableRow key={w.id}>
-//                     <TableCell>{w.name}</TableCell>
-//                     <TableCell>{w.site}</TableCell>
-//                     <TableCell>{w.trade}</TableCell>
-//                     <TableCell>{w.email}</TableCell>
-//                     <TableCell>
-//                       {w.trainings.map((t) => {
-//                         const prog = defaultTrainingPrograms.find(
-//                           (p) => p.id === t.programId
-//                         );
-//                         return (
-//                           <Chip
-//                             key={t.programId}
-//                             label={`${prog?.name} (${t.mode}) - ${t.status}`}
-//                             sx={{
-//                               mr: 0.5,
-//                               mb: 0.5,
-//                               backgroundColor: statusColors[t.status],
-//                               color: "white",
-//                             }}
-//                           />
-//                         );
-//                       })}
-//                     </TableCell>
-//                     <TableCell>
-//                       <Tooltip title="Delete">
-//                         <IconButton
-//                           color="error"
-//                           onClick={() => handleDeleteWorker(w.id)}
-//                         >
-//                           <Delete />
-//                         </IconButton>
-//                       </Tooltip>
-//                     </TableCell>
-//                   </TableRow>
-//                 ))
-//               ) : (
-//                 <TableRow>
-//                   <TableCell colSpan={6} align="center">
-//                     No assignments yet
-//                   </TableCell>
-//                 </TableRow>
-//               )}
-//             </TableBody>
-//           </Table>
-//         </CardContent>
-//       </Card>
-
-//       {/* Assign Dialog */}
-//       <Dialog
-//         open={assignDialogOpen}
-//         onClose={handleAssignDialogClose}
-//         maxWidth="md"
-//         fullWidth
-//       >
-//         <DialogTitle>Assign Trainings to Employees</DialogTitle>
-//         <DialogContent dividers>
-//           <Grid container spacing={2}>
-//             <Grid item xs={12}>
-//               <FormControl fullWidth>
-//                 <InputLabel>Select Employees</InputLabel>
-//                 <Select
-//                   multiple
-//                   value={formData.selectedEmployees}
-//                   onChange={(e) =>
-//                     setFormData({ ...formData, selectedEmployees: e.target.value })
-//                   }
-//                   input={<OutlinedInput label="Select Employees" />}
-//                 >
-//                   {employees.map((emp) => (
-//                     <MenuItem key={emp.id} value={emp.id}>
-//                       {emp.name} ({emp.trade})
-//                     </MenuItem>
-//                   ))}
-//                 </Select>
-//               </FormControl>
-//             </Grid>
-
-//             <Grid item xs={12}>
-//               <FormControl fullWidth>
-//                 <InputLabel>Select Trainings</InputLabel>
-//                 <Select
-//                   multiple
-//                   value={formData.trainings.map((t) => t.programId)}
-//                   onChange={(e) => handleTrainingSelect(e.target.value)}
-//                   input={<OutlinedInput label="Select Trainings" />}
-//                 >
-//                   {defaultTrainingPrograms.map((p) => (
-//                     <MenuItem key={p.id} value={p.id}>
-//                       {p.name}
-//                     </MenuItem>
-//                   ))}
-//                 </Select>
-//               </FormControl>
-//             </Grid>
-
-//             {formData.trainings.map((t) => {
-//               const prog = defaultTrainingPrograms.find((p) => p.id === t.programId);
-//               return (
-//                 <React.Fragment key={t.programId}>
-//                   <Grid item xs={4}>
-//                     <Typography>{prog?.name}</Typography>
-//                   </Grid>
-//                   <Grid item xs={4}>
-//                     <FormControl fullWidth>
-//                       <InputLabel>Mode</InputLabel>
-//                       <Select
-//                         value={t.mode}
-//                         onChange={(e) =>
-//                           handleTrainingChange(t.programId, "mode", e.target.value)
-//                         }
-//                       >
-//                         <MenuItem value="Online">Online</MenuItem>
-//                         <MenuItem value="Offline">Offline</MenuItem>
-//                       </Select>
-//                     </FormControl>
-//                   </Grid>
-//                   <Grid item xs={4}>
-//                     <FormControl fullWidth>
-//                       <InputLabel>Status</InputLabel>
-//                       <Select
-//                         value={t.status}
-//                         onChange={(e) =>
-//                           handleTrainingChange(t.programId, "status", e.target.value)
-//                         }
-//                       >
-//                         <MenuItem value="Assigned">Assigned</MenuItem>
-//                         <MenuItem value="Completed">Completed</MenuItem>
-//                         <MenuItem value="Expired">Expired</MenuItem>
-//                       </Select>
-//                     </FormControl>
-//                   </Grid>
-//                 </React.Fragment>
-//               );
-//             })}
-//           </Grid>
-//         </DialogContent>
-//         <DialogActions>
-//           <Button onClick={handleAssignDialogClose}>Cancel</Button>
-//           <Button
-//             variant="contained"
-//             startIcon={<Save />}
-//             onClick={handleSubmitAssignment}
-//           >
-//             Save
-//           </Button>
-//         </DialogActions>
-//       </Dialog>
-//     </Box>
-//   );
-// };
-
-// export default WorkerAssignment;
 import React, { useState } from "react";
 import {
   Box,
@@ -293,7 +9,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
   MenuItem,
   Table,
   TableBody,
@@ -303,7 +18,6 @@ import {
   Typography,
   IconButton,
   Grid,
-  Divider,
   FormControl,
   InputLabel,
   Select,
@@ -314,10 +28,8 @@ import {
 } from "@mui/material";
 import {
   Edit,
-  Visibility,
   Add,
   Delete,
-  Save,
   ExpandMore,
   ExpandLess,
 } from "@mui/icons-material";
@@ -438,10 +150,16 @@ const WorkerAssignment = () => {
       </Box>
 
       {/* Main Table */}
-      <Card>
+      <Card
+       sx={{
+          borderLeft: "6px solid #082A52",
+          boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
+          borderRadius: 2,
+        }}
+      >
         <CardContent>
           <Table>
-            <TableHead>
+            <TableHead sx={{background:"#E3EAFD"}}>
               <TableRow>
                 <TableCell />
                 <TableCell>Training</TableCell>

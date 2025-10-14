@@ -168,7 +168,7 @@ const menuItems = {
               id: 'collapse',
               title: 'Training Planner',
               type: 'item',
-              url: 'traingplanner'
+              url: '/traingplanner'
             },
             {
               id: 'button',
@@ -199,6 +199,60 @@ const menuItems = {
         }
       ]
     },
+     {
+      id: 'ui-element',
+      title: 'Trainings & Induction',
+      type: 'group',
+      icon: 'icon-ui',
+      children: [
+        {
+          id: 'ptw',
+          title: 'PERMIT-TO-WORK (PTW)',
+          type: 'collapse',
+          icon: 'feather icon-box',
+          children: [
+             {
+              id: 'collapse',
+              title: 'Permit Type Configurator',
+              type: 'item',
+              url: '/permittype'
+            },
+            {
+              id: 'button',
+              title: 'Permit WorkFlow',
+              type: 'item',
+              url: '/permitworkflow'
+            },
+            {
+              id: 'badges',
+              title: 'Worker Competency Manager',
+              type: 'item',
+              url: '/workercompetency'
+            },
+            {
+              id: 'breadcrumb',
+              title: 'Permit Request & Issuance',
+              type: 'item',
+              url: '/permitrequest&statustracker'
+            },
+            {
+              id: 'tabs-pills',
+              title: 'Permit History & Reporting',
+              type: 'item',
+              url: '/permithistory&reporting'
+            },
+            {
+              id: 'tabs-pills',
+              title: 'Permit Analytics Dashboard',
+              type: 'item',
+              url: '/permitdashboard'
+            }
+            
+          ]
+        }
+      ]
+    },
+
 
     {
   id: 'ui-forms',
@@ -206,13 +260,6 @@ const menuItems = {
   type: 'group',
   icon: 'icon-group',
   children: [
-    {
-      id: 'ptw',
-      title: 'PERMIT-TO-WORK (PTW)',
-      type: 'item',
-      icon: 'feather icon-file-text',
-      url: '/tables/bootstrap'
-    },
     {
       id: 'ppe',
       title: 'PPE MANAGEMENT',

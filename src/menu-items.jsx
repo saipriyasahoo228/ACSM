@@ -201,7 +201,7 @@ const menuItems = {
     },
      {
       id: 'ui-element',
-      title: 'Trainings & Induction',
+      title: 'Permit To Work Section',
       type: 'group',
       icon: 'icon-ui',
       children: [
@@ -252,6 +252,48 @@ const menuItems = {
         }
       ]
     },
+     {
+      id: 'ui-element',
+      title: 'Issuance & Renewal Management',
+      type: 'group',
+      icon: 'icon-ui',
+      children: [
+        {
+          id: 'issuance',
+          title: 'Issuance & Renewal',
+          type: 'collapse',
+          icon: 'feather icon-box',
+          children: [
+             {
+              id: 'collapse',
+              title: 'PPE Catalog Management',
+              type: 'item',
+              url: '/ppecatalog'
+            },
+            {
+              id: 'button',
+              title: 'Tool Issuance',
+              type: 'item',
+              url: '/toolissuance'
+            },
+            {
+              id: 'badges',
+              title: 'StoreKeeper View',
+              type: 'item',
+              url: '/storekeeper'
+            },
+            {
+              id: 'breadcrumb',
+              title: 'Employee Acknowledgment & Renewal',
+              type: 'item',
+              url: '/employee acknowledgment & renewal'
+            }
+            
+          ]
+        }
+      ]
+    },
+
 
 
     {
@@ -260,13 +302,7 @@ const menuItems = {
   type: 'group',
   icon: 'icon-group',
   children: [
-    {
-      id: 'ppe',
-      title: 'PPE MANAGEMENT',
-      type: 'item',
-      icon: 'feather icon-shield',
-      url: '/tables/bootstrap'
-    },
+    
     {
       id: 'toolbox',
       title: 'TOOLBOX TALKS',

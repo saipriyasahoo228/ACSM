@@ -117,6 +117,26 @@ const routes = [
         element: lazy(() => import('./views/permittowork/permitdashboard'))
       },
       {
+        exact: 'true',
+        path: '/ppecatalog',
+        element: lazy(() => import('./views/issuance&renewal/ppecatalog'))
+      },
+       {
+        exact: 'true',
+        path: '/toolissuance',
+        element: lazy(() => import('./views/issuance&renewal/toolissuance'))
+      },
+      {
+        exact: 'true',
+        path: '/storekeeper',
+        element: lazy(() => import('./views/issuance&renewal/storekeeper'))
+      },
+      {
+        exact: 'true',
+        path: '/employee acknowledgment & renewal',
+        element: lazy(() => import('./views/issuance&renewal/empacknowledgement'))
+      },
+      {
         path: '*',
         exact: 'true',
         element: () => <Navigate to={BASE_URL} />

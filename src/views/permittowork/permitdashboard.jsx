@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Row, Col, Table } from "react-bootstrap";
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/css/bootstrap.min.css";
 
 const PermitDashboard = () => {
   // Dummy stats data

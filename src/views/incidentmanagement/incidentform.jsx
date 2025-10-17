@@ -9,7 +9,6 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  Grid,
   TextField,
   MenuItem,
   Typography,
@@ -22,7 +21,14 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material";
-import { AttachFile, CalendarToday, LocationOn, Search, Edit, Delete } from "@mui/icons-material";
+import {
+  AttachFile,
+  CalendarToday,
+  LocationOn,
+  Search,
+  Edit,
+  Delete,
+} from "@mui/icons-material";
 
 const categories = [
   "Near-Miss",
@@ -53,7 +59,15 @@ const IncidentReporting = () => {
       setEditingId(incident.id);
     } else {
       const nextId = `INC-${(incidents.length + 1).toString().padStart(3, "0")}`;
-      setFormData({ ...formData, id: nextId });
+      setFormData({
+        id: nextId,
+        category: "",
+        date: "",
+        time: "",
+        location: "",
+        description: "",
+        attachments: null,
+      });
       setEditingId(null);
     }
     setOpen(true);
@@ -89,12 +103,10 @@ const IncidentReporting = () => {
     }
 
     if (editingId) {
-      // Update existing incident
       setIncidents(
         incidents.map((inc) => (inc.id === editingId ? formData : inc))
       );
     } else {
-      // Add new incident
       setIncidents([...incidents, formData]);
     }
     handleClose();
@@ -114,15 +126,28 @@ const IncidentReporting = () => {
 
   return (
     <Box sx={{ p: 3 }}>
-      <Card sx={{ borderLeft: "6px solid #0A3A6E", borderRadius: 2, boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}>
+      <Card
+        sx={{
+          borderLeft: "6px solid #0A3A6E",
+          borderRadius: 2,
+          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+        }}
+      >
         <CardHeader
           title={
-            <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0A3A6E" }}>
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: "bold", color: "#0A3A6E" }}
+            >
               Incident Reporting & Management
             </Typography>
           }
           action={
-            <Button variant="contained" sx={{ bgcolor: "#0A3A6E" }} onClick={() => handleOpen()}>
+            <Button
+              variant="contained"
+              sx={{ bgcolor: "#0A3A6E" }}
+              onClick={() => handleOpen()}
+            >
               + Report Incident
             </Button>
           }
@@ -146,12 +171,24 @@ const IncidentReporting = () => {
           <Table>
             <TableHead sx={{ background: "#E3F2FD" }}>
               <TableRow>
-                <TableCell sx={{ fontWeight: "bold", color: "#0A3A6E" }}>Incident ID</TableCell>
-                <TableCell sx={{ fontWeight: "bold", color: "#0A3A6E" }}>Category</TableCell>
-                <TableCell sx={{ fontWeight: "bold", color: "#0A3A6E" }}>Date</TableCell>
-                <TableCell sx={{ fontWeight: "bold", color: "#0A3A6E" }}>Time</TableCell>
-                <TableCell sx={{ fontWeight: "bold", color: "#0A3A6E" }}>Location</TableCell>
-                <TableCell sx={{ fontWeight: "bold", color: "#0A3A6E" }}>Actions</TableCell>
+                <TableCell sx={{ fontWeight: "bold", color: "#0A3A6E" }}>
+                  Incident ID
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold", color: "#0A3A6E" }}>
+                  Category
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold", color: "#0A3A6E" }}>
+                  Date
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold", color: "#0A3A6E" }}>
+                  Time
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold", color: "#0A3A6E" }}>
+                  Location
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold", color: "#0A3A6E" }}>
+                  Actions
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -195,101 +232,118 @@ const IncidentReporting = () => {
         </CardContent>
       </Card>
 
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-        <DialogTitle sx={{ bgcolor: "#0A3A6E", color: "#fff", fontWeight: "bold" }}>
+      {/* Dialog Form - Vertical Layout */}
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+        <DialogTitle
+          sx={{
+            bgcolor: "#0A3A6E",
+            color: "#fff",
+            fontWeight: "bold",
+            textAlign: "center",
+          }}
+        >
           {editingId ? "Update Incident" : "Report New Incident"}
         </DialogTitle>
-        <DialogContent sx={{ mt: 2 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <TextField label="Incident ID" name="id" value={formData.id} fullWidth disabled />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                select
-                label="Category"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                fullWidth
-              >
-                {categories.map((cat) => (
-                  <MenuItem key={cat} value={cat}>
-                    {cat}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                label="Date"
-                name="date"
-                type="date"
-                value={formData.date}
-                onChange={handleChange}
-                fullWidth
-                InputLabelProps={{ shrink: true }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <CalendarToday />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                label="Time"
-                name="time"
-                type="time"
-                value={formData.time}
-                onChange={handleChange}
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Location"
-                name="location"
-                value={formData.location}
-                onChange={handleChange}
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <LocationOn />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Description"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                multiline
-                rows={3}
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Button
-                variant="outlined"
-                component="label"
-                startIcon={<AttachFile />}
-              >
-                Upload Attachments
-                <input type="file" hidden multiple onChange={handleFileChange} />
-              </Button>
-            </Grid>
-          </Grid>
+        <DialogContent
+          sx={{
+            mt: 2,
+            background: "linear-gradient(135deg, #f5f9ff, #edf3ff)",
+            borderRadius: "8px",
+          }}
+        >
+          <Stack spacing={2} sx={{mt:2}}>
+            <TextField
+              label="Incident ID"
+              name="id"
+              value={formData.id}
+              fullWidth
+              disabled
+            />
+
+            <TextField
+              select
+              label="Category"
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              fullWidth
+            >
+              {categories.map((cat) => (
+                <MenuItem key={cat} value={cat}>
+                  {cat}
+                </MenuItem>
+              ))}
+            </TextField>
+
+            <TextField
+              label="Date"
+              name="date"
+              type="date"
+              value={formData.date}
+              onChange={handleChange}
+              fullWidth
+              InputLabelProps={{ shrink: true }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <CalendarToday />
+                  </InputAdornment>
+                ),
+              }}
+            />
+
+            <TextField
+              label="Time"
+              name="time"
+              type="time"
+              value={formData.time}
+              onChange={handleChange}
+              fullWidth
+            />
+
+            <TextField
+              label="Location"
+              name="location"
+              value={formData.location}
+              onChange={handleChange}
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocationOn />
+                  </InputAdornment>
+                ),
+              }}
+            />
+
+            <TextField
+              label="Description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              multiline
+              rows={3}
+              fullWidth
+            />
+
+            <Button
+              variant="outlined"
+              component="label"
+              startIcon={<AttachFile />}
+              sx={{ alignSelf: "flex-start" }}
+            >
+              Upload Attachments
+              <input type="file" hidden multiple onChange={handleFileChange} />
+            </Button>
+          </Stack>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSubmit} variant="contained" sx={{ bgcolor: "#0A3A6E" }}>
+          <Button
+            onClick={handleSubmit}
+            variant="contained"
+            sx={{ bgcolor: "#0A3A6E" }}
+          >
             {editingId ? "Update Incident" : "Submit Incident"}
           </Button>
         </DialogActions>

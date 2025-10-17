@@ -67,7 +67,9 @@ const ContractorManagement = () => {
   const ContractorOnboardingForm = () => (
     <Modal show={showContractorModal} onHide={() => setShowContractorModal(false)} size="lg">
       <Modal.Header closeButton>
-        <Modal.Title>Onboard New Contractor</Modal.Title>
+        <Modal.Title
+        style={{color:'#0A3A6E'}}
+        >Onboard New Contractor</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -156,7 +158,9 @@ const ContractorManagement = () => {
   const EmployeeOnboardingForm = () => (
     <Modal show={showEmployeeModal} onHide={() => setShowEmployeeModal(false)} size="lg">
       <Modal.Header closeButton>
-        <Modal.Title>Onboard New Employee - {selectedContractor?.name}</Modal.Title>
+        <Modal.Title
+        style={{color:'#0A3A6E'}}
+        >Onboard New Employee - {selectedContractor?.name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>

@@ -210,7 +210,15 @@ export default function PermitRequestManager() {
 
       {/* Dialog */}
       <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} fullWidth maxWidth="md">
-        <DialogTitle>New Permit Request</DialogTitle>
+        <DialogTitle
+        sx={{ 
+            backgroundColor: '#0A3A6E',
+            color: 'white',
+            fontWeight: 600,
+            py: 3
+          }}
+        >
+          New Permit Request</DialogTitle>
         <DialogContent dividers>
           <Stack spacing={3} sx={{ mt: 1 }}>
             <TextField

@@ -65,7 +65,7 @@ const PermitDashboard = () => {
         <Col md={6}>
           <Card
             className="shadow-sm border-0"
-            style={{ borderRadius: "16px", height: "100%", boxShadow: "0 6px 20px rgba(0,0,0,0.08)" }}
+            style={{ borderRadius: "16px", height: "100%", boxShadow: "0 6px 20px rgba(0,0,0,0.08)", background: "linear-gradient(135deg, #f9fbff, #eef3ff, #f4b6e9ff)",}}
           >
             <Card.Header style={{ background: "#F5F7FF", borderRadius: "16px 16px 0 0" }}>
               <h6 className="fw-bold text-dark mb-0">Permit Distribution by Type</h6>
@@ -94,33 +94,71 @@ const PermitDashboard = () => {
 
         <Col md={6}>
           <Card
-            className="shadow-sm border-0"
-            style={{ borderRadius: "16px", boxShadow: "0 6px 20px rgba(0,0,0,0.08)" }}
-          >
-            <Card.Header style={{ background: "#F5F7FF", borderRadius: "16px 16px 0 0" }}>
-              <h6 className="fw-bold text-dark mb-0">Permit Summary by Type</h6>
-            </Card.Header>
-            <Card.Body style={{ maxHeight: "300px", overflowY: "auto" }}>
-              <Table hover responsive>
-                <thead style={{ backgroundColor: "#E8EAF6" }}>
-                  <tr>
-                    <th>Permit Type</th>
-                    <th>Total Issued</th>
-                    <th>Percentage</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.map((d, i) => (
-                    <tr key={i}>
-                      <td>{d.name}</td>
-                      <td>{d.value}</td>
-                      <td>{((d.value / total) * 100).toFixed(1)}%</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </Card.Body>
-          </Card>
+  className="shadow-sm border-0"
+  style={{
+    borderRadius: "16px",
+    boxShadow: "0 6px 20px rgba(0,0,0,0.08)",
+    background: "linear-gradient(135deg, #f5f9ff, #edf3ff)", // light shimmer
+    overflow: "hidden",
+  }}
+>
+  {/* Fixed Header */}
+  <Card.Header
+    style={{
+      background: "linear-gradient(135deg, #e3f0ff, #f9fbff)",
+      borderBottom: "1px solid #ddd",
+      borderRadius: "16px 16px 0 0",
+      position: "relative",
+      zIndex: 10,
+    }}
+  >
+    <h6 className="fw-bold text-dark mb-0">Permit Summary by Type</h6>
+  </Card.Header>
+
+  {/* Scrollable Table Section */}
+  <div
+    style={{
+      maxHeight: "300px",
+      overflowY: "auto",
+      padding: "0",
+      margin: "0",
+    }}
+  >
+    <Table
+      hover
+      responsive
+      className="mb-0"
+      style={{
+        borderCollapse: "separate",
+        borderSpacing: "0",
+      }}
+    >
+      <thead
+        style={{
+          backgroundColor: "#E8EAF6",
+          position: "relative",
+          zIndex: 5,
+        }}
+      >
+        <tr>
+          <th>Permit Type</th>
+          <th>Total Issued</th>
+          <th>Percentage</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((d, i) => (
+          <tr key={i}>
+            <td>{d.name}</td>
+            <td>{d.value}</td>
+            <td>{((d.value / total) * 100).toFixed(1)}%</td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+  </div>
+</Card>
+
         </Col>
       </Row>
     </div>

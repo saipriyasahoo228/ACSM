@@ -351,7 +351,15 @@ export default function PermitTypeConfigurator() {
 
       {/* Dialog: Create/Edit Permit Type */}
       <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} fullWidth maxWidth="md">
-        <DialogTitle>{editingId ? "Edit Permit Type" : "New Permit Type"}</DialogTitle>
+        <DialogTitle
+        sx={{ 
+            backgroundColor: '#0A3A6E',
+            color: 'white',
+            fontWeight: 600,
+            py: 3
+          }}
+         >
+          {editingId ? "Edit Permit Type" : "New Permit Type"}</DialogTitle>
         <DialogContent dividers>
           <Stack spacing={2} sx={{ pt: 1 }}>
             <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>

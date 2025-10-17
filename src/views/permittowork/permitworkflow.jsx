@@ -215,7 +215,15 @@ export default function PermitWorkflowRouter() {
 
       {/* Dialog */}
       <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} fullWidth maxWidth="xl">
-  <DialogTitle>{editingIndex !== null ? "Edit Workflow" : "New Workflow"}</DialogTitle>
+  <DialogTitle
+  sx={{ 
+            backgroundColor: '#0A3A6E',
+            color: 'white',
+            fontWeight: 600,
+            py: 3
+          }} 
+  >
+    {editingIndex !== null ? "Edit Workflow" : "New Workflow"}</DialogTitle>
   <DialogContent dividers>
     <Stack spacing={3}>
       <Select

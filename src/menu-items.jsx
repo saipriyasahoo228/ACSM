@@ -252,27 +252,27 @@ const menuItems = {
         }
       ]
     },
-     {
+    {
       id: 'ui-element',
-      title: 'Issuance & Renewal Management',
+      title: 'Stock Issuance & Renewal Management',
       type: 'group',
       icon: 'icon-ui',
       children: [
         {
           id: 'issuance',
-          title: 'Issuance & Renewal',
+          title: 'Stock,Issuance & Renewal',
           type: 'collapse',
           icon: 'feather icon-box',
           children: [
              {
               id: 'collapse',
-              title: 'PPE Catalog Management',
+              title: 'Stock Management',
               type: 'item',
               url: '/ppecatalog'
             },
             {
               id: 'button',
-              title: 'Tool Issuance',
+              title: 'New Issuance',
               type: 'item',
               url: '/toolissuance'
             },
@@ -284,9 +284,56 @@ const menuItems = {
             },
             {
               id: 'breadcrumb',
-              title: 'Employee Acknowledgment & Renewal',
+              title: 'Employee Acknowledgment',
               type: 'item',
-              url: '/employee acknowledgment & renewal'
+              url: '/employee acknowledgment'
+            },
+             {
+              id: 'renewals',
+              title: 'Renewals Management',
+              type: 'item',
+              url: '/renewal'
+            },
+             {
+              id: 'renewaldashboard',
+              title: 'Analytics',
+              type: 'item',
+              url: '/renewaldashboard'
+            }
+            
+          ]
+        }
+      ]
+    },
+    {
+      id: 'ui-element',
+      title: 'TOOLBOX TALK SECTION',
+      type: 'group',
+      icon: 'icon-ui',
+      children: [
+        {
+          id: 'toolboxtalk',
+          title: 'ToolBox Talk Management',
+          type: 'collapse',
+          icon: 'feather icon-box',
+          children: [
+             {
+              id: 'collapse',
+              title: 'TBT Creation & Scheduling',
+              type: 'item',
+              url: '/tbtcreation&scheduling'
+            },
+            {
+              id: 'button',
+              title: 'Digital Attendance & Sign-off',
+              type: 'item',
+              url: '/digitalattendance'
+            },
+            {
+              id: 'badges',
+              title: 'ToolBox Analytics',
+              type: 'item',
+              url: '/toolboxdashboard'
             }
             
           ]
@@ -294,29 +341,47 @@ const menuItems = {
       ]
     },
 
-
-
+    {
+      id: 'ui-element',
+      title: 'INCIDENT MANAGEMENT SECTION',
+      type: 'group',
+      icon: 'icon-ui',
+      children: [
+        {
+          id: 'incident',
+          title: 'Incident Management',
+          type: 'collapse',
+          icon: 'feather icon-box',
+          children: [
+             {
+              id: 'collapse',
+              title: 'Incident Entry',
+              type: 'item',
+              url: '/incident'
+            },
+            {
+              id: 'button',
+              title: 'Investigation & CAPA',
+              type: 'item',
+              url: '/investigation'
+            },
+            {
+              id: 'badges',
+              title: 'Incident Analytics',
+              type: 'item',
+              url: '/incidentdashboard'
+            }
+            
+          ]
+        }
+      ]
+    },
     {
   id: 'ui-forms',
   title: 'FORM SECTION',
   type: 'group',
   icon: 'icon-group',
   children: [
-    
-    {
-      id: 'toolbox',
-      title: 'TOOLBOX TALKS',
-      type: 'item',
-      icon: 'feather icon-message-square',
-      url: '/tables/bootstrap'
-    },
-    {
-      id: 'incident',
-      title: 'INCIDENT MANAGEMENT',
-      type: 'item',
-      icon: 'feather icon-alert-triangle',
-      url: '/tables/bootstrap'
-    },
     {
       id: 'audits',
       title: 'INTERNAL AUDITS',

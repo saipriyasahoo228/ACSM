@@ -297,7 +297,15 @@ const WorkerAssignment = () => {
     },
   }}
 >
-  <DialogTitle>Assign Training</DialogTitle>
+  <DialogTitle
+  sx={{ 
+            backgroundColor: '#0A3A6E',
+            color: 'white',
+            fontWeight: 600,
+            py: 3
+          }}
+  >
+    Assign Training</DialogTitle>
 
   <DialogContent dividers>
     <Grid container spacing={3} direction="column">

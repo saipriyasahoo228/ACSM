@@ -119,7 +119,7 @@ const routes = [
       {
         exact: 'true',
         path: '/ppecatalog',
-        element: lazy(() => import('./views/issuance&renewal/ppecatalog'))
+        element: lazy(() => import('./views/issuance&renewal/stock'))
       },
        {
         exact: 'true',
@@ -133,8 +133,48 @@ const routes = [
       },
       {
         exact: 'true',
-        path: '/employee acknowledgment & renewal',
+        path: '/employee acknowledgment',
         element: lazy(() => import('./views/issuance&renewal/empacknowledgement'))
+      },
+      {
+        exact: 'true',
+        path: '/renewal',
+        element: lazy(() => import('./views/issuance&renewal/renewals'))
+      },
+      {
+        exact: 'true',
+        path: '/renewaldashboard',
+        element: lazy(() => import('./views/issuance&renewal/issuancedashboard'))
+      },
+      {
+        exact: 'true',
+        path: '/tbtcreation&scheduling',
+        element: lazy(() => import('./views/toolboxtalk/tbtcreation'))
+      },
+      {
+        exact: 'true',
+        path: '/digitalattendance',
+        element: lazy(() => import('./views/toolboxtalk/digitalattendance'))
+      },
+       {
+        exact: 'true',
+        path: '/toolboxdashboard',
+        element: lazy(() => import('./views/toolboxtalk/toolboxdashboard'))
+      },
+       {
+        exact: 'true',
+        path: '/incident',
+        element: lazy(() => import('./views/incidentmanagement/incidentform'))
+      },
+      {
+        exact: 'true',
+        path: '/investigation',
+        element: lazy(() => import('./views/incidentmanagement/capa'))
+      },
+        {
+        exact: 'true',
+        path: '/incidentdashboard',
+        element: lazy(() => import('./views/incidentmanagement/incidentdashboard'))
       },
       {
         path: '*',

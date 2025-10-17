@@ -332,7 +332,14 @@ const TrainingPrograms = () => {
 
       {/* Add/Edit Program Dialog */}
       <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-        <DialogTitle>
+        <DialogTitle
+        sx={{ 
+            backgroundColor: '#0A3A6E',
+            color: 'white',
+            fontWeight: 600,
+            py: 3
+          }} 
+        >
           {editIndex !== null ? "Edit Program" : "Add Program"}
         </DialogTitle>
         <DialogContent>

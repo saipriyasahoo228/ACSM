@@ -489,7 +489,15 @@ export default function WorkerCompetencyManager() {
 
       {/* Dialog */}
       <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} fullWidth maxWidth="sm">
-        <DialogTitle>{editingId ? "Edit Worker Competencies" : "Assign Competencies"}</DialogTitle>
+        <DialogTitle
+        sx={{ 
+            backgroundColor: '#0A3A6E',
+            color: 'white',
+            fontWeight: 600,
+            py: 3
+          }}
+        >
+          {editingId ? "Edit Worker Competencies" : "Assign Competencies"}</DialogTitle>
         <DialogContent dividers>
           <Stack spacing={2}>
             <Select

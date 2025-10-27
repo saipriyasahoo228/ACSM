@@ -334,13 +334,17 @@ const TrainingPrograms = () => {
       <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
         <DialogTitle
         sx={{ 
-            backgroundColor: '#0A3A6E',
-            color: 'white',
-            fontWeight: 600,
-            py: 3
+            background: "#0E4C92",
+    color: "white",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
           }} 
         >
           {editIndex !== null ? "Edit Program" : "Add Program"}
+           <IconButton onClick={handleClose} sx={{ color: "#fff" }}>
+              <Close />
+            </IconButton>
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2} mt={1}>

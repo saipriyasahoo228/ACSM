@@ -24,7 +24,7 @@ import {
   Autocomplete,
   
 } from "@mui/material";
-import { Add, Edit, Delete } from "@mui/icons-material";
+import { Add, Edit, Delete,Close } from "@mui/icons-material";
 
 // Dummy catalogs
 const itemCatalog = [
@@ -204,8 +204,18 @@ export default function RenewalsManagement() {
 
       {/* Add/Edit Dialog */}
       <Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="sm">
-        <DialogTitle sx={{ backgroundColor: "#0A3A6E", color: "white", py: 2 }}>
+        <DialogTitle 
+        sx={{ backgroundColor: "#0A3A6E", 
+        color: "white", 
+        py: 2 ,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        }}>
           {editingIndex !== null ? "Edit Renewal Record" : "Add New Renewal Record"}
+          <IconButton onClick={() => setOpen(false)} sx={{ color: "#fff" }}>
+                                                                <Close />
+                                                              </IconButton>
         </DialogTitle>
 
         <DialogContent sx={{ p: 3 }}>

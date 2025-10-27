@@ -21,7 +21,7 @@ import {
   Typography,
   Chip,
 } from "@mui/material";
-import { Download, Delete, AddCircleOutline } from "@mui/icons-material";
+import { Download, Delete, AddCircleOutline,Close } from "@mui/icons-material";
 import jsPDF from "jspdf";
 
 const CertificateManagement = () => {
@@ -150,8 +150,19 @@ const CertificateManagement = () => {
 
       {/* Dialog */}
       <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
-        <DialogTitle sx={{ background: "#0E4C92", color: "white" }}>
+        <DialogTitle 
+        sx={{ 
+          background: "#0E4C92", 
+          color: "white",
+           display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+           }}>
           Issue Certificate
+
+          <IconButton onClick={handleClose} sx={{ color: "#fff" }}>
+                        <Close />
+                      </IconButton>
         </DialogTitle>
         <DialogContent dividers>
           <Grid container spacing={2} sx={{ mt: 1 }}>

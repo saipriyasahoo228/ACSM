@@ -28,6 +28,7 @@ import {
   Search,
   Edit,
   Delete,
+  Close,
 } from "@mui/icons-material";
 
 const categories = [
@@ -239,15 +240,21 @@ const IncidentReporting = () => {
             bgcolor: "#0A3A6E",
             color: "#fff",
             fontWeight: "bold",
-            textAlign: "center",
+            display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+            
           }}
         >
           {editingId ? "Update Incident" : "Report New Incident"}
+           <IconButton onClick={() => setOpen(false)} sx={{ color: "#fff" }}>
+                                                                                    <Close />
+                                                                                  </IconButton>
         </DialogTitle>
         <DialogContent
           sx={{
             mt: 2,
-            background: "linear-gradient(135deg, #f5f9ff, #edf3ff)",
+            
             borderRadius: "8px",
           }}
         >

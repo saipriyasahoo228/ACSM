@@ -26,7 +26,7 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
-import { Add, Edit, Delete, ExpandMore, ArrowUpward, ArrowDownward } from "@mui/icons-material";
+import { Add, Edit, Delete, ExpandMore, ArrowUpward, ArrowDownward ,Close} from "@mui/icons-material";
 
 // Dummy permit types — replace later with real data
 const DUMMY_PERMIT_TYPES = [
@@ -220,10 +220,17 @@ export default function PermitWorkflowRouter() {
             backgroundColor: '#0A3A6E',
             color: 'white',
             fontWeight: 600,
-            py: 3
+            py: 3,
+             display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
           }} 
   >
-    {editingIndex !== null ? "Edit Workflow" : "New Workflow"}</DialogTitle>
+    {editingIndex !== null ? "Edit Workflow" : "New Workflow"}
+    <IconButton  onClick={() => setDialogOpen(false)} sx={{ color: "#fff" }}>
+                            <Close />
+                          </IconButton>
+    </DialogTitle>
   <DialogContent dividers>
     <Stack spacing={3}>
       <Select

@@ -14,7 +14,7 @@ import {
   Divider,
   Alert,
 } from "@mui/material";
-import { AddCircle, RemoveCircle } from "@mui/icons-material";
+import { AddCircle, RemoveCircle,Close } from "@mui/icons-material";
 
 const ManageChecksDialog = ({ 
   open, 
@@ -84,7 +84,19 @@ const ManageChecksDialog = ({
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
-      <DialogTitle>Manage Safety Checks</DialogTitle>
+      <DialogTitle
+      sx={{ 
+          background: "#0E4C92", 
+          color: "white",
+           display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+           }}>
+      Manage Safety Checks
+      <IconButton onClick={onClose} sx={{ color: "#fff" }}>
+                              <Close />
+                            </IconButton>
+      </DialogTitle>
       <DialogContent dividers>
         <Stack spacing={3}>
           {/* Usage Alert */}

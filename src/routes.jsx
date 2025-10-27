@@ -171,10 +171,31 @@ const routes = [
         path: '/investigation',
         element: lazy(() => import('./views/incidentmanagement/capa'))
       },
-        {
+      {
         exact: 'true',
         path: '/incidentdashboard',
         element: lazy(() => import('./views/incidentmanagement/incidentdashboard'))
+      },
+      {
+        exact: 'true',
+        path: '/dailyworkforce',
+        element: lazy(() => import('./views/timesheet/dailyworkforce'))
+      },
+       {
+        exact: 'true',
+        path: '/auditplanning',
+        element: lazy(() => import('./views/audit/auditplanning'))
+      },
+      {
+        exact: 'true',
+        path: '/auditfinding',
+        element: lazy(() => import('./views/audit/auditfinding'))
+      },
+      
+      {
+        exact: 'true',
+        path: '/auditdashboard',
+        element: lazy(() => import('./views/audit/auditdashboard'))
       },
       {
         path: '*',

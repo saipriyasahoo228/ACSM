@@ -30,7 +30,7 @@ import {
   Checkbox,
   Paper,
 } from "@mui/material";
-import { Add, Edit, Delete, Person,Search } from "@mui/icons-material";
+import { Add, Edit, Delete, Person,Search,Close } from "@mui/icons-material";
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
@@ -232,9 +232,22 @@ export default function ContractorAdminModule() {
 
       {/* Request Dialog */}
       <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} fullWidth maxWidth="md" PaperProps={{ sx: { borderRadius: 3, boxShadow: '0 10px 40px rgba(0,0,0,0.1)' } }}>
-        <DialogTitle sx={{ backgroundColor: '#0A3A6E', color: 'white', fontWeight: 600, py: 3 }}>
-          <Person sx={{ mr: 1, verticalAlign: 'middle' }} />
+        <DialogTitle 
+        sx={{ 
+          backgroundColor: '#0A3A6E', 
+          color: 'white', 
+          fontWeight: 600, 
+          py: 3 ,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+
+        }}>
+          
           {editingIndex !== null ? "Edit Item Request" : "New Item Request"}
+           <IconButton onClick={() => setDialogOpen(false)} sx={{ color: "#fff" }}>
+                                                                <Close />
+                                                              </IconButton>
         </DialogTitle>
 
         <DialogContent sx={{ p: 4 }}>

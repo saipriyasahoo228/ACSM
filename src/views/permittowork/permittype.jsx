@@ -27,7 +27,7 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
-import { Add, Edit, Delete, ExpandMore } from "@mui/icons-material";
+import { Add, Edit, Delete, ExpandMore ,Close} from "@mui/icons-material";
 
 // Import only ManageChecksDialog since it's truly reusable
 import ManageChecksDialog from "./managechecks";
@@ -356,10 +356,17 @@ export default function PermitTypeConfigurator() {
             backgroundColor: '#0A3A6E',
             color: 'white',
             fontWeight: 600,
-            py: 3
+            py: 3,
+             display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
          >
-          {editingId ? "Edit Permit Type" : "New Permit Type"}</DialogTitle>
+          {editingId ? "Edit Permit Type" : "New Permit Type"}
+          <IconButton onClick={() => setDialogOpen(false)} sx={{ color: "#fff" }}>
+                                  <Close />
+                                </IconButton>
+          </DialogTitle>
         <DialogContent dividers>
           <Stack spacing={2} sx={{ pt: 1 }}>
             <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>

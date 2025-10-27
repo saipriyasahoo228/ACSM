@@ -24,7 +24,7 @@ import {
   MenuItem,
   Stack
 } from "@mui/material";
-import { Search, ExpandMore, ExpandLess } from "@mui/icons-material";
+import { Search, ExpandMore, ExpandLess,Close } from "@mui/icons-material";
 
 const TBTCreationScheduling = () => {
   const [open, setOpen] = useState(false);
@@ -198,8 +198,20 @@ const TBTCreationScheduling = () => {
 
       {/* Dialog for new TBT */}
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="lg">
-        <DialogTitle sx={{ bgcolor: "#0A3A6E", color: "#fff", fontWeight: "bold" }}>
+        <DialogTitle
+         sx={{
+           bgcolor: "#0A3A6E", 
+        color: "#fff", 
+        fontWeight: "bold" ,
+         display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        }}>
           Create New Toolbox Talk
+          <IconButton onClick={() => setOpen(false)} sx={{ color: "#fff" }}>
+                                                                          <Close />
+                                                                        </IconButton>
+
         </DialogTitle>
         <DialogContent sx={{ mt: 2 }}>
           <Grid container spacing={2}>

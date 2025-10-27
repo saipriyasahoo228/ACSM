@@ -377,30 +377,77 @@ const menuItems = {
       ]
     },
     {
+      id: 'ui-element',
+      title: 'TIMESHEET & WORK CAPTURING SECTION',
+      type: 'group',
+      icon: 'icon-ui',
+      children: [
+        {
+          id: 'timesheet',
+          title: 'TimeSheet & WorkCapture',
+          type: 'collapse',
+          icon: 'feather icon-box',
+          children: [
+             {
+              id: 'collapse',
+              title: 'Daily WorkForce Attendance',
+              type: 'item',
+              url: '/dailyworkforce'
+            },
+           
+            
+          ]
+        }
+      ]
+    },
+     {
+      id: 'ui-element',
+      title: 'AUDITING & CAPA SECTION',
+      type: 'group',
+      icon: 'icon-ui',
+      children: [
+        {
+          id: 'audit',
+          title: 'Auditing & CAPA',
+          type: 'collapse',
+          icon: 'feather icon-box',
+          children: [
+             {
+              id: 'collapse',
+              title: 'Audit Planning & Scheduling',
+              type: 'item',
+              url: '/auditplanning'
+            },
+             {
+              id: 'collapse',
+              title: 'Audit Findings',
+              type: 'item',
+              url: '/auditfinding'
+            },
+             
+             {
+              id: 'collapse',
+              title: 'Audit Analyticts',
+              type: 'item',
+              url: '/auditdashboard'
+            },
+           
+            
+          ]
+        }
+      ]
+    },
+    {
   id: 'ui-forms',
   title: 'FORM SECTION',
   type: 'group',
   icon: 'icon-group',
   children: [
     {
-      id: 'audits',
-      title: 'INTERNAL AUDITS',
-      type: 'item',
-      icon: 'feather icon-clipboard',
-      url: '/tables/bootstrap'
-    },
-    {
       id: 'monitoring',
       title: 'MONITORING (KPIs)',
       type: 'item',
       icon: 'feather icon-bar-chart-2',
-      url: '/tables/bootstrap'
-    },
-    {
-      id: 'corrective',
-      title: 'CORRECTIVE ACTION (CAP)',
-      type: 'item',
-      icon: 'feather icon-check-square',
       url: '/tables/bootstrap'
     },
     {

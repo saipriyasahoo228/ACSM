@@ -32,6 +32,7 @@ import {
   Delete,
   ExpandMore,
   ExpandLess,
+  Close
 } from "@mui/icons-material";
 
 const statusColors = {
@@ -302,10 +303,17 @@ const WorkerAssignment = () => {
             backgroundColor: '#0A3A6E',
             color: 'white',
             fontWeight: 600,
-            py: 3
+            py: 3,
+            display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
           }}
   >
-    Assign Training</DialogTitle>
+    Assign Training
+    <IconButton onClick={handleAssignDialogClose} sx={{ color: "#fff" }}>
+                  <Close />
+                </IconButton>
+    </DialogTitle>
 
   <DialogContent dividers>
     <Grid container spacing={3} direction="column">

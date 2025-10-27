@@ -21,7 +21,7 @@ import {
   Chip,
   Typography,
 } from "@mui/material";
-import { AddCircleOutline, Edit, Delete } from "@mui/icons-material";
+import { AddCircleOutline, Edit, Delete,Close  } from "@mui/icons-material";
 
 const TrainingPlanner = () => {
   const [open, setOpen] = useState(false);
@@ -166,10 +166,24 @@ const TrainingPlanner = () => {
       </Card>
 
       {/* Dialog */}
-      <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
-        <DialogTitle sx={{ background: "#0E4C92", color: "white" }}>
-          {editingIndex !== null ? "Edit Training Plan" : "New Training Plan"}
-        </DialogTitle>
+      <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth
+      
+      >
+       <DialogTitle
+  sx={{
+    background: "#0E4C92",
+    color: "white",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  }}
+>
+  {editingIndex !== null ? "Edit Training Plan" : "New Training Plan"}
+  <IconButton onClick={handleClose} sx={{ color: "#fff" }}>
+    <Close />
+  </IconButton>
+</DialogTitle>
+
         <DialogContent dividers>
           <Grid container spacing={2} sx={{ mt: 1 }}>
             <Grid item xs={12} sm={6}>

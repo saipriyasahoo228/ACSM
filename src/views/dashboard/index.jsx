@@ -146,40 +146,42 @@ const DashDefault = () => {
   return (
     <React.Fragment>
       <Row>
-        {/* Safety Metrics Cards */}
+        {/* 🌈 Metric Cards */}
         {safetyMetrics.map((metric, index) => (
           <Col key={index} xl={3} md={6} className="mb-4">
-            <Card className="border-0 shadow-sm" style={{ background: colors.cardBg }}>
+            <Card
+              className="border-0 shadow-sm"
+              style={{
+                background: `linear-gradient(135deg, ${metric.color} 0%, ${metric.color}99 100%)`,
+                color: 'white',
+                borderRadius: '12px'
+              }}
+            >
               <Card.Body>
                 <div className="d-flex justify-content-between align-items-center">
                   <div>
-                    <h6 className="text-muted mb-2" style={{ fontSize: '14px' }}>{metric.title}</h6>
-                    <h3 className="mb-0" style={{ color: metric.color, fontWeight: '600' }}>{metric.value}</h3>
+                    <h6 className="text-light mb-2" style={{ fontSize: '14px', opacity: 0.9 }}>
+                      {metric.title}
+                    </h6>
+                    <h3 className="mb-0" style={{ fontWeight: '600' }}>{metric.value}</h3>
                   </div>
-                  <div 
+                  <div
                     className="rounded-circle d-flex align-items-center justify-content-center"
-                    style={{ 
-                      width: '50px', 
-                      height: '50px', 
-                      background: `${metric.color}15`
+                    style={{
+                      width: '50px',
+                      height: '50px',
+                      background: 'rgba(255, 255, 255, 0.2)'
                     }}
                   >
-                    <i className={`${metric.icon}`} style={{ color: metric.color, fontSize: '20px' }} />
+                    <i className={`${metric.icon}`} style={{ color: 'white', fontSize: '20px' }} />
                   </div>
                 </div>
-                <div className="progress mt-3" style={{ height: '4px' }}>
-                  <div 
-                    className="progress-bar" 
-                    style={{ 
-                      width: `${metric.progress}%`, 
-                      background: metric.color
-                    }} 
-                  />
-                </div>
+                
               </Card.Body>
             </Card>
           </Col>
         ))}
+
 
         {/* Internal Audit Status */}
         <Col md={6} className="mb-4">
@@ -530,7 +532,7 @@ const DashDefault = () => {
       </Row>
 
       {/* Custom Styles */}
-      <style jsx>{`
+      <style>{`
         .chart-bar:hover {
           transform: scaleY(1.05);
         }

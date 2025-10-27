@@ -24,7 +24,7 @@ import {
   Tooltip,
   Grid,
 } from "@mui/material";
-import { Search,Add, Edit, Delete } from "@mui/icons-material";
+import { Search,Add, Edit, Delete ,Close} from "@mui/icons-material";
 
 // Define items under each type
 const itemsByType = {
@@ -199,9 +199,15 @@ export default function StockEntry() {
             color: "white",
             fontWeight: 600,
             py: 2,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
           {editingIndex !== null ? "Edit Stock Entry" : "Add Stock Entry"}
+          <IconButton onClick={() => setOpen(false)} sx={{ color: "#fff" }}>
+                                                      <Close />
+                                                    </IconButton>
         </DialogTitle>
 
         <DialogContent dividers sx={{ p: 3 }}>

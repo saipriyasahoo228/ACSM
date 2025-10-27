@@ -23,7 +23,7 @@ import {
   Chip,
   FormHelperText,
 } from "@mui/material";
-import { Add, Delete,Edit } from "@mui/icons-material";
+import { Add, Delete,Edit ,Close} from "@mui/icons-material";
 
 export default function PermitRequestManager() {
   // Dummy permit & worker data
@@ -114,11 +114,13 @@ export default function PermitRequestManager() {
           borderLeft: "6px solid #082A52",
           boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
           borderRadius: 2,
+          
         }}
       >
         <CardHeader
           title={
-            <Typography variant="h6" sx={{ color: "#082A52", fontWeight: 600 }}>
+            <Typography variant="h6" 
+            sx={{ color: "#082A52", fontWeight: 600 }}>
               Permit Request & Issuance Manager
             </Typography>
           }
@@ -215,10 +217,17 @@ export default function PermitRequestManager() {
             backgroundColor: '#0A3A6E',
             color: 'white',
             fontWeight: 600,
-            py: 3
+            py: 3,
+            display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
           }}
         >
-          New Permit Request</DialogTitle>
+          New Permit Request
+          <IconButton onClick={() => setDialogOpen(false)} sx={{ color: "#fff" }}>
+                                            <Close />
+                                          </IconButton>
+          </DialogTitle>
         <DialogContent dividers>
           <Stack spacing={3} sx={{ mt: 1 }}>
             <TextField

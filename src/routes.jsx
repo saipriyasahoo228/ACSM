@@ -197,6 +197,26 @@ const routes = [
         path: '/auditdashboard',
         element: lazy(() => import('./views/audit/auditdashboard'))
       },
+       {
+        exact: 'true',
+        path: '/kpiconfiguration',
+        element: lazy(() => import('./views/kpi/kpilibrary'))
+      },
+       {
+        exact: 'true',
+        path: '/kpitracking',
+        element: lazy(() => import('./views/kpi/kpitrackingform'))
+      },
+      {
+        exact: 'true',
+        path: '/kpibenchmarking',
+        element: lazy(() => import('./views/kpi/kpidashboard'))
+      },
+      {
+        exact: 'true',
+        path: '/designation',
+        element: lazy(() => import('./views/mastermodule/designation'))
+      },
       {
         path: '*',
         exact: 'true',

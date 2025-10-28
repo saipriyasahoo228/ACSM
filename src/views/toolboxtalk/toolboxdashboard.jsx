@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   Box,
@@ -5,7 +6,6 @@ import {
   CardContent,
   CardHeader,
   Typography,
-  Grid,
   Table,
   TableHead,
   TableRow,
@@ -27,7 +27,6 @@ import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from "recha
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-// Dummy data
 const sampleTBTs = [
   {
     tbtId: "TBT-001",
@@ -107,91 +106,117 @@ export default function TBTSummaryDashboard() {
   );
 
   return (
-    <Box sx={{ p: 3, background: "linear-gradient(to right, #e0f7fa, #f1f8e9)" }}>
-      {/* Dashboard Stats */}
-      <Grid container spacing={3} sx={{ mb: 3 }}>
-        <Grid item xs={12} md={4}>
-          <Card
-            sx={{
-              borderRadius: 3,
-              background: "linear-gradient(135deg, #0A3A6E 0%, #3A7BD5 100%)",
-              color: "#fff",
-              boxShadow: "0px 4px 20px rgba(0,0,0,0.1)",
-            }}
-          >
-            <CardContent>
-              <Stack direction="row" spacing={2} alignItems="center">
-                <Avatar sx={{ bgcolor: "#fff", color: "#0A3A6E" }}>
-                  <Assignment />
-                </Avatar>
-                <Box>
-                  <Typography variant="subtitle2" sx={{ opacity: 0.8 }}>
-                    Total TBTs
-                  </Typography>
-                  <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                    {tbtList.length}
-                  </Typography>
-                </Box>
-              </Stack>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Card
-            sx={{
-              borderRadius: 3,
-              background: "linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%)",
-              color: "#fff",
-              boxShadow: "0px 4px 20px rgba(0,0,0,0.1)",
-            }}
-          >
-            <CardContent>
-              <Stack direction="row" spacing={2} alignItems="center">
-                <Avatar sx={{ bgcolor: "#fff", color: "#FF6B6B" }}>
-                  <Group />
-                </Avatar>
-                <Box>
-                  <Typography variant="subtitle2" sx={{ opacity: 0.8 }}>
-                    Total Attendees
-                  </Typography>
-                  <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                    {tbtList.reduce((sum, tbt) => sum + tbt.attendees.length, 0)}
-                  </Typography>
-                </Box>
-              </Stack>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Card
-            sx={{
-              borderRadius: 3,
-              background: "linear-gradient(135deg, #4CAF50 0%, #81C784 100%)",
-              color: "#fff",
-              boxShadow: "0px 4px 20px rgba(0,0,0,0.1)",
-            }}
-          >
-            <CardContent>
-              <Stack direction="row" spacing={2} alignItems="center">
-                <Avatar sx={{ bgcolor: "#fff", color: "#4CAF50" }}>
-                  <CheckCircle />
-                </Avatar>
-                <Box>
-                  <Typography variant="subtitle2" sx={{ opacity: 0.8 }}>
-                    Pending Sign-offs
-                  </Typography>
-                  <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                    {tbtList.filter((tbt) => !tbt.officerSignOff?.name).length}
-                  </Typography>
-                </Box>
-              </Stack>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
+    <Box sx={{ p: 4, background: "linear-gradient(to right, #e0f7fa, #f1f8e9)" }}>
+      
+      {/* HEADER BOX */}
+      <Box
+        sx={{
+          background: "linear-gradient(90deg, #e8e0efff, #f7d8f6ff)",
+          color: "#fff",
+          borderRadius: 2,
+          p: 2,
+          mb: 3,
+          boxShadow: 3,
+        }}
+      >
+        <Typography variant="h5" sx={{ fontWeight: "bold", mb: 1 }}>
+          Toolbox Talk Dashboard
+        </Typography>
+        <Typography variant="body1">
+          Overview of Toolbox Talks, attendance trends, and sign-off status
+        </Typography>
+      </Box>
 
-      {/* Pie Chart */}
-      <Card sx={{ mb: 3, borderRadius: 3, boxShadow: "0px 4px 20px rgba(0,0,0,0.1),",background: "linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%)", }}>
+      {/* STATS CARDS USING STACK */}
+      <Stack direction={{ xs: "column", md: "row" }} spacing={3} sx={{ mb: 4 }}>
+        <Card
+          sx={{
+            flex: 1,
+            borderRadius: 3,
+            background: "linear-gradient(135deg, #bcd2eaff 0%, #3A7BD5 100%)",
+            color: "#fff",
+            boxShadow: "0px 6px 25px rgba(0,0,0,0.15)",
+          }}
+        >
+          <CardContent sx={{ p: 4 }}>
+            <Stack direction="row" spacing={3} alignItems="center">
+              <Avatar sx={{ bgcolor: "#fff", color: "#0A3A6E", width: 64, height: 64 }}>
+                <Assignment sx={{ fontSize: 32 }} />
+              </Avatar>
+              <Box>
+                <Typography variant="subtitle1" sx={{ opacity: 0.8 }}>
+                  Total TBTs
+                </Typography>
+                <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+                  {tbtList.length}
+                </Typography>
+              </Box>
+            </Stack>
+          </CardContent>
+        </Card>
+
+        <Card
+          sx={{
+            flex: 1,
+            borderRadius: 3,
+            background: "linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%)",
+            color: "#fff",
+            boxShadow: "0px 6px 25px rgba(0,0,0,0.15)",
+          }}
+        >
+          <CardContent sx={{ p: 4 }}>
+            <Stack direction="row" spacing={3} alignItems="center">
+              <Avatar sx={{ bgcolor: "#fff", color: "#FF6B6B", width: 64, height: 64 }}>
+                <Group sx={{ fontSize: 32 }} />
+              </Avatar>
+              <Box>
+                <Typography variant="subtitle1" sx={{ opacity: 0.8 }}>
+                  Total Attendees
+                </Typography>
+                <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+                  {tbtList.reduce((sum, tbt) => sum + tbt.attendees.length, 0)}
+                </Typography>
+              </Box>
+            </Stack>
+          </CardContent>
+        </Card>
+
+        <Card
+          sx={{
+            flex: 1,
+            borderRadius: 3,
+            background: "linear-gradient(135deg, #4CAF50 0%, #81C784 100%)",
+            color: "#fff",
+            boxShadow: "0px 6px 25px rgba(0,0,0,0.15)",
+          }}
+        >
+          <CardContent sx={{ p: 4 }}>
+            <Stack direction="row" spacing={3} alignItems="center">
+              <Avatar sx={{ bgcolor: "#fff", color: "#4CAF50", width: 64, height: 64 }}>
+                <CheckCircle sx={{ fontSize: 32 }} />
+              </Avatar>
+              <Box>
+                <Typography variant="subtitle1" sx={{ opacity: 0.8 }}>
+                  Pending Sign-offs
+                </Typography>
+                <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+                  {tbtList.filter((tbt) => !tbt.officerSignOff?.name).length}
+                </Typography>
+              </Box>
+            </Stack>
+          </CardContent>
+        </Card>
+      </Stack>
+
+      {/* PIE CHART */}
+      <Card
+        sx={{
+          mb: 3,
+          borderRadius: 3,
+          boxShadow: "0px 6px 25px rgba(0,0,0,0.15)",
+          background: "linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%)",
+        }}
+      >
         <CardHeader
           title={
             <Typography sx={{ fontWeight: "bold", color: "#0A3A6E" }}>
@@ -199,16 +224,10 @@ export default function TBTSummaryDashboard() {
             </Typography>
           }
         />
-        <CardContent sx={{ height: 250 }}>
+        <CardContent sx={{ height: 250 ,}}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
-              <Pie
-                data={pieData}
-                dataKey="value"
-                nameKey="name"
-                outerRadius={80}
-                label={{ fill: "#0A3A6E", fontWeight: "bold" }}
-              >
+              <Pie data={pieData} dataKey="value" nameKey="name" outerRadius={80} label>
                 {pieData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
@@ -220,13 +239,10 @@ export default function TBTSummaryDashboard() {
         </CardContent>
       </Card>
 
-      {/* TBT Table */}
-      <Card sx={{ borderRadius: 3, boxShadow: "0px 4px 20px rgba(0,0,0,0.1)",background: "#f9f9f9", }}>
-     
+      {/* TABLE */}
+      <Card sx={{ borderRadius: 3, boxShadow: "0px 6px 25px rgba(0,0,0,0.15)", background: "#f1e0f6ff" }}>
         <CardHeader
-          title={
-            <Typography sx={{ fontWeight: "bold", color: "#0A3A6E" }}>TBT List</Typography>
-          }
+          title={<Typography sx={{ fontWeight: "bold", color: "#0A3A6E" }}>TBT List</Typography>}
           action={
             <TextField
               placeholder="Search by TBT ID / Project"
@@ -243,7 +259,7 @@ export default function TBTSummaryDashboard() {
           }
         />
         <CardContent>
-          <Table sx={{ borderRadius: 2 }}>
+          <Table>
             <TableHead>
               <TableRow sx={{ background: "linear-gradient(90deg, #0A3A6E, #3A7BD5)", color: "#fff" }}>
                 <TableCell sx={{ fontWeight: "bold", color: "#fff" }}>TBT ID</TableCell>
@@ -279,7 +295,7 @@ export default function TBTSummaryDashboard() {
         </CardContent>
       </Card>
 
-      {/* View Attendance Dialog */}
+      {/* VIEW ATTENDANCE DIALOG */}
       <Dialog open={viewDialogOpen} onClose={handleCloseView} fullWidth maxWidth="md">
         <DialogTitle sx={{ bgcolor: "#0A3A6E", color: "#fff" }}>
           {selectedTBT?.tbtId} - Final Attendance
@@ -304,24 +320,23 @@ export default function TBTSummaryDashboard() {
                 </TableRow>
               </TableHead>
               <TableBody>
-  {selectedTBT?.attendees.map((a) => (
-    <TableRow key={a.id} sx={{ "&:hover": { backgroundColor: "#f9f9f9" } }}>
-      <TableCell>
-        {a.present !== false ? (
-          <CheckCircle sx={{ color: "#4CAF50" }} />
-        ) : (
-          <CheckCircle sx={{ color: "#FF6B6B" }} />
-        )}
-      </TableCell>
-      <TableCell>{a.id}</TableCell>
-      <TableCell>{a.name}</TableCell>
-      <TableCell>{a.designation}</TableCell>
-      <TableCell>{a.department}</TableCell>
-      <TableCell>{a.reason || ""}</TableCell>
-    </TableRow>
-  ))}
-</TableBody>
-
+                {selectedTBT?.attendees.map((a) => (
+                  <TableRow key={a.id} sx={{ "&:hover": { backgroundColor: "#f9f9f9" } }}>
+                    <TableCell>
+                      {a.present !== false ? (
+                        <CheckCircle sx={{ color: "#4CAF50" }} />
+                      ) : (
+                        <CheckCircle sx={{ color: "#FF6B6B" }} />
+                      )}
+                    </TableCell>
+                    <TableCell>{a.id}</TableCell>
+                    <TableCell>{a.name}</TableCell>
+                    <TableCell>{a.designation}</TableCell>
+                    <TableCell>{a.department}</TableCell>
+                    <TableCell>{a.reason || ""}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
             </Table>
           </Box>
         </DialogContent>

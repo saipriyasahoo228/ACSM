@@ -29,7 +29,8 @@ import {
   Edit,
   Delete,
   People,
-  Close
+  Close,
+  AddCircle
 } from "@mui/icons-material";
 
 const auditTypes = ["Internal Audit", "Statutory Audit"];
@@ -141,10 +142,11 @@ const AuditPlanning = () => {
           action={
             <Button
               variant="contained"
+              startIcon={<AddCircle />}
               sx={{ bgcolor: "#0A3A6E" }}
               onClick={() => handleOpen()}
             >
-              + Schedule Audit
+              Schedule Audit
             </Button>
           }
         />

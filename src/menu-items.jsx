@@ -15,6 +15,7 @@ const menuItems = {
         }
       ]
     },
+    
     // {
     //   id: 'ui-element',
     //   title: 'UI ELEMENT',
@@ -152,6 +153,39 @@ const menuItems = {
       icon: 'feather icon-users',
       url: '/contractor&worker'
     }]},
+
+  {
+      id: 'ui-element',
+      title: 'MASTER MODULE SECTION',
+      type: 'group',
+      icon: 'icon-ui',
+      children: [
+        {
+          id: 'master',
+          title: 'MASTER MODULE',
+          type: 'collapse',
+          icon: 'feather icon-bar-chart-2',
+          children: [
+             {
+              id: 'collapse',
+              title: 'Designation Master',
+              type: 'item',
+              url: '/designation'
+            },
+             {
+              id: 'collapse',
+              title: 'Worker Role Master',
+              type: 'item',
+              //url: '/kpitracking'
+            },
+             
+            
+           
+            
+          ]
+        }
+      ]
+    },
   {
       id: 'ui-element',
       title: 'Trainings & Induction',
@@ -438,18 +472,48 @@ const menuItems = {
       ]
     },
     {
+      id: 'ui-element',
+      title: 'Key Performance Indicator',
+      type: 'group',
+      icon: 'icon-ui',
+      children: [
+        {
+          id: 'kpi',
+          title: 'MONITORING (KPIs)',
+          type: 'collapse',
+          icon: 'feather icon-bar-chart-2',
+          children: [
+             {
+              id: 'collapse',
+              title: 'KPI Configuration',
+              type: 'item',
+              url: '/kpiconfiguration'
+            },
+             {
+              id: 'collapse',
+              title: 'KPI Tracking',
+              type: 'item',
+              url: '/kpitracking'
+            },
+             
+             {
+              id: 'collapse',
+              title: 'KPI BenchMarking & Comparision',
+              type: 'item',
+              url: '/kpibenchmarking'
+            },
+           
+            
+          ]
+        }
+      ]
+    },
+    {
   id: 'ui-forms',
   title: 'FORM SECTION',
   type: 'group',
   icon: 'icon-group',
   children: [
-    {
-      id: 'monitoring',
-      title: 'MONITORING (KPIs)',
-      type: 'item',
-      icon: 'feather icon-bar-chart-2',
-      url: '/tables/bootstrap'
-    },
     {
       id: 'reports',
       title: 'REPORTS & COMPLIANCE',

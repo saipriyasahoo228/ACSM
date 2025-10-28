@@ -1,346 +1,211 @@
 
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   Card,
-  Grid,
+  CardContent,
   Typography,
   Stack,
+  Divider,
   Table,
   TableHead,
+  TableBody,
   TableRow,
   TableCell,
-  TableBody,
-  IconButton,
-  Paper,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
 } from "@mui/material";
 import {
-  WarningAmber,
   ReportProblem,
-  AssignmentTurnedIn,
-  Insights,
-  Visibility,
+  Warning,
+  CheckCircle,
+  Engineering,
 } from "@mui/icons-material";
 import {
   PieChart,
   Pie,
   Cell,
-  Tooltip,
+  Tooltip as ReTooltip,
   Legend,
-  LineChart,
-  Line,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
-  ResponsiveContainer,
 } from "recharts";
 
+const THEME_PRIMARY = "#0E4C92";
+const PIE_COLORS = ["#0E4C92", "#2e7d32", "#f57c00", "#c62828"];
+
 const IncidentDashboard = () => {
-  const [selectedIncident, setSelectedIncident] = useState(null);
+  // Dummy summary data
+  const totals = {
+    totalIncidents: 45,
+    openIncidents: 12,
+    resolvedIncidents: 28,
+    highRisk: 5,
+  };
 
-  // Summary cards
-  const summary = [
-    {
-      title: "Total Incidents",
-      value: 42,
-      icon: <WarningAmber />,
-      gradient: "linear-gradient(135deg, #ff6a00, #ee0979)",
-    },
-    {
-      title: "Open Incidents",
-      value: 10,
-      icon: <ReportProblem />,
-      gradient: "linear-gradient(135deg, #43cea2, #185a9d)",
-    },
-    {
-      title: "Closed Incidents",
-      value: 25,
-      icon: <AssignmentTurnedIn />,
-      gradient: "linear-gradient(135deg, #11998e, #38ef7d)",
-    },
-    {
-      title: "CAPA Pending",
-      value: 7,
-      icon: <Insights />,
-      gradient: "linear-gradient(135deg, #f7971e, #ffd200)",
-    },
+  // Dummy Pie chart data
+  const pieData = [
+    { name: "Resolved", value: 28 },
+    { name: "Open", value: 12 },
+    { name: "High Risk", value: 5 },
   ];
 
-  // Pie chart data
-  const categoryData = [
-    { name: "Near Miss", value: 12, color: "#00C49F" },
-    { name: "First Aid", value: 10, color: "#FFBB28" },
-    { name: "LTI", value: 8, color: "#FF8042" },
-    { name: "Dangerous Occurrence", value: 12, color: "#8884D8" },
+  // Dummy Bar chart data
+  const barData = [
+    { name: "Site A", Incidents: 10 },
+    { name: "Site B", Incidents: 7 },
+    { name: "Site C", Incidents: 15 },
+    { name: "Site D", Incidents: 13 },
   ];
 
-  // Line chart data
-  const monthlyData = [
-    { month: "Jan", incidents: 4 },
-    { month: "Feb", incidents: 6 },
-    { month: "Mar", incidents: 5 },
-    { month: "Apr", incidents: 8 },
-    { month: "May", incidents: 3 },
-    { month: "Jun", incidents: 6 },
-    { month: "Jul", incidents: 9 },
-    { month: "Aug", incidents: 4 },
-    { month: "Sep", incidents: 7 },
-    { month: "Oct", incidents: 5 },
-  ];
-
-  // Table dummy data
+  // Dummy incident table
   const recentIncidents = [
-    {
-      id: "INC-001",
-      category: "Near Miss",
-      date: "2025-10-01",
-      location: "Plant A",
-      status: "Open",
-      capa: "Pending",
-      reporter: "John Doe",
-      description:
-        "Worker slipped on wet floor but avoided injury. Housekeeping notified.",
-    },
-    {
-      id: "INC-002",
-      category: "First Aid",
-      date: "2025-09-22",
-      location: "Plant B",
-      status: "Closed",
-      capa: "Completed",
-      reporter: "Amit Sharma",
-      description:
-        "Minor cut while handling tools. First aid given, no lost time.",
-    },
-    {
-      id: "INC-003",
-      category: "LTI",
-      date: "2025-09-10",
-      location: "Warehouse",
-      status: "Under Investigation",
-      capa: "Pending",
-      reporter: "Rahul Singh",
-      description:
-        "Forklift collision causing ankle injury. Investigation ongoing.",
-    },
+    { id: 1, site: "Site A", type: "Slip & Fall", severity: "High", status: "Open" },
+    { id: 2, site: "Site B", type: "Equipment Failure", severity: "Medium", status: "Resolved" },
+    { id: 3, site: "Site C", type: "Fire", severity: "High", status: "Open" },
+    { id: 4, site: "Site D", type: "Chemical Spill", severity: "Low", status: "Resolved" },
   ];
-
-  const handleView = (incident) => setSelectedIncident(incident);
-  const handleClose = () => setSelectedIncident(null);
 
   return (
-    <Box
-      sx={{
-        p: 4,
-        background: "linear-gradient(135deg, #f5f7fa, #e8ecf3)",
-        minHeight: "100vh",
-      }}
-    >
-      <Typography
-        variant="h4"
-        sx={{
-          fontWeight: 700,
-          mb: 4,
-          textAlign: "center",
-          color: "#0A3A6E",
-        }}
-      >
-        Incident Management Dashboard
-      </Typography>
+    <Box sx={{ p: 4 }}>
+      <Box
+  sx={{
+    background: "linear-gradient(90deg, #b5dff1ff, #94b2eaff)",
+    color: "#fff",
+    borderRadius: 2,
+    p: 3,
+    mb: 4,
+    boxShadow: 3,
+  }}
+>
+  <Typography variant="h5" sx={{ fontWeight: "bold", mb: 0.5 }}>
+    Incident Management Dashboard
+  </Typography>
+  <Typography variant="body1">
+    Real-time tracking of incidents, safety metrics, and risk performance
+  </Typography>
+</Box>
 
-      {/* Summary Cards */}
-      <Grid container spacing={3}>
-        {summary.map((card, i) => (
-          <Grid item xs={12} sm={6} md={3} key={i}>
-            <Card
-              sx={{
-                background: card.gradient,
-                color: "#fff",
-                p: 3,
-                borderRadius: 3,
-                boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
-                transition: "transform 0.3s",
-                "&:hover": { transform: "scale(1.05)" },
-              }}
-            >
-              <Stack
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <Box sx={{ fontSize: 36 }}>{card.icon}</Box>
-                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                  {card.value}
-                </Typography>
-              </Stack>
-              <Typography variant="subtitle1" sx={{ mt: 1, fontWeight: 500 }}>
-                {card.title}
-              </Typography>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
 
-      {/* Pie Chart - Full Width */}
-      <Card
-        sx={{
-          mt: 4,
-          p: 3,
-          borderRadius: 3,
-          background: "linear-gradient(135deg, #f8faff, #e8f0ff, #aabff7ff)",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-        }}
-      >
-        <Typography
-          variant="h6"
-          sx={{ mb: 2, fontWeight: 600, color: "#0A3A6E", textAlign: "center" }}
-        >
-          Incident Category Distribution
-        </Typography>
-        <Box sx={{ height: 400 }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={categoryData}
-                cx="50%"
-                cy="50%"
-                outerRadius={150}
-                dataKey="value"
-                label={({ name, percent }) =>
-                  `${name}: ${(percent * 100).toFixed(0)}%`
-                }
-              >
-                {categoryData.map((entry, i) => (
-                  <Cell key={i} fill={entry.color} />
+      {/* KPI Cards Row */}
+      <Stack direction="row" spacing={3} sx={{ mb: 5 }} useFlexGap flexWrap="wrap">
+        <Card sx={{ flex: 1, minWidth: 250, borderRadius: 3, boxShadow: 4 ,background: "linear-gradient(90deg, #f3dab9ff, #f3bf86ff)"}}>
+          <CardContent sx={{ p: 4, textAlign: "center" }}>
+            <ReportProblem sx={{ fontSize: 56, color: THEME_PRIMARY, mb: 1 }} />
+            <Typography variant="subtitle1" sx={{ color: "text.secondary" }}>
+              Total Incidents
+            </Typography>
+            <Typography variant="h3" sx={{ fontWeight: 800, color: THEME_PRIMARY }}>
+              {totals.totalIncidents}
+            </Typography>
+          </CardContent>
+        </Card>
+
+        <Card sx={{ flex: 1, minWidth: 250, borderRadius: 3, boxShadow: 4 ,background: "linear-gradient(90deg, #f0d1efff, #ef9efdff)"}}>
+          <CardContent sx={{ p: 4, textAlign: "center" }}>
+            <Warning sx={{ fontSize: 56, color: "#f57c00", mb: 1 }} />
+            <Typography variant="subtitle1" sx={{ color: "text.secondary" }}>
+              Open Incidents
+            </Typography>
+            <Typography variant="h3" sx={{ fontWeight: 800, color: "#f57c00" }}>
+              {totals.openIncidents}
+            </Typography>
+          </CardContent>
+        </Card>
+
+        <Card sx={{ flex: 1, minWidth: 250, borderRadius: 3, boxShadow: 4 ,background: "linear-gradient(90deg, #c1f0e8ff, #96b2e8ff)"}}>
+          <CardContent sx={{ p: 4, textAlign: "center" }}>
+            <CheckCircle sx={{ fontSize: 56, color: "#2e7d32", mb: 1 }} />
+            <Typography variant="subtitle1" sx={{ color: "text.secondary" }}>
+              Resolved Incidents
+            </Typography>
+            <Typography variant="h3" sx={{ fontWeight: 800, color: "#2e7d32" }}>
+              {totals.resolvedIncidents}
+            </Typography>
+          </CardContent>
+        </Card>
+
+        <Card sx={{ flex: 1, minWidth: 250, borderRadius: 3, boxShadow: 4 ,background: "linear-gradient(90deg, #ecdfbdff, #a1ddb4ff)"}}>
+          <CardContent sx={{ p: 4, textAlign: "center" }}>
+            <Engineering sx={{ fontSize: 56, color: "#c62828", mb: 1 }} />
+            <Typography variant="subtitle1" sx={{ color: "text.secondary" }}>
+              High-Risk Incidents
+            </Typography>
+            <Typography variant="h3" sx={{ fontWeight: 800, color: "#c62828" }}>
+              {totals.highRisk}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Stack>
+
+      {/* Charts Row */}
+      <Stack direction="row" spacing={3} sx={{ mb: 5 }} useFlexGap flexWrap="wrap">
+        <Card sx={{ flex: 1, borderRadius: 3, boxShadow: 4, p: 3, height: 440 ,background: "linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%)", }}>
+          <Typography variant="h6" sx={{ mb: 2, color: THEME_PRIMARY, fontWeight: 700 }}>
+            Incident Type Distribution
+          </Typography>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <PieChart width={420} height={360}>
+              <Pie data={pieData} dataKey="value" cx="50%" cy="50%" outerRadius={120} label>
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip />
+              <ReTooltip />
               <Legend />
             </PieChart>
-          </ResponsiveContainer>
-        </Box>
-      </Card>
+          </Box>
+        </Card>
 
-      {/* Line Chart - Full Width */}
-      <Card
-        sx={{
-          mt: 4,
-          p: 3,
-          borderRadius: 3,
-          background: "linear-gradient(135deg, #ffffff, #b994e7ff)",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-        }}
-      >
-        <Typography
-          variant="h6"
-          sx={{ mb: 2, fontWeight: 600, color: "#0A3A6E", textAlign: "center" }}
-        >
-          Monthly Incident Review
-        </Typography>
-        <Box sx={{ height: 400 }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={monthlyData}>
+        <Card sx={{ flex: 1, borderRadius: 3, boxShadow: 4, p: 3, height: 440 ,background: "linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%)", }}>
+          <Typography variant="h6" sx={{ mb: 2, color: THEME_PRIMARY, fontWeight: 700 }}>
+            Incidents by Site
+          </Typography>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <BarChart width={600} height={360} data={barData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
+              <XAxis dataKey="name" />
               <YAxis />
-              <Tooltip />
+              <ReTooltip />
               <Legend />
-              <Line
-                type="monotone"
-                dataKey="incidents"
-                stroke="#6C63FF"
-                strokeWidth={3}
-                activeDot={{ r: 8 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </Box>
-      </Card>
+              <Bar dataKey="Incidents" fill={THEME_PRIMARY} barSize={40} />
+            </BarChart>
+          </Box>
+        </Card>
+      </Stack>
 
       {/* Recent Incidents Table */}
-      <Card
-        sx={{
-          mt: 4,
-          p: 3,
-          borderRadius: 3,
-          background: "linear-gradient(135deg, #ffffff, #c7cc9cff)",
-          boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
-        }}
-      >
-        <Typography
-          variant="h6"
-          sx={{ mb: 2, fontWeight: 600, color: "#0A3A6E", textAlign: "center" }}
-        >
-          Recent Incidents
-        </Typography>
-        <Paper sx={{ borderRadius: 2, overflow: "hidden" }}>
+      <Card sx={{ borderRadius: 3, boxShadow: 4 ,background: "linear-gradient(135deg, #b2eef1ff 0%, #e7dee8ff 100%)", }}>
+        <CardContent sx={{ p: 3 }}>
+          <Typography variant="h6" sx={{ mb: 2, color: THEME_PRIMARY, fontWeight: 700 }}>
+            Recent Incident Records
+          </Typography>
+          <Divider sx={{ mb: 2 }} />
           <Table>
-            <TableHead
-              sx={{
-                background: "linear-gradient(90deg, #e3f2fd, #f9f9f9)",
-              }}
-            >
+            <TableHead>
               <TableRow>
-                <TableCell>Incident ID</TableCell>
-                <TableCell>Category</TableCell>
-                <TableCell>Date</TableCell>
-                <TableCell>Location</TableCell>
+                <TableCell>ID</TableCell>
+                <TableCell>Site</TableCell>
+                <TableCell>Type</TableCell>
+                <TableCell>Severity</TableCell>
                 <TableCell>Status</TableCell>
-                <TableCell>CAPA</TableCell>
-                <TableCell align="center">View</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {recentIncidents.map((incident, i) => (
-                <TableRow key={i}>
-                  <TableCell>{incident.id}</TableCell>
-                  <TableCell>{incident.category}</TableCell>
-                  <TableCell>{incident.date}</TableCell>
-                  <TableCell>{incident.location}</TableCell>
-                  <TableCell>{incident.status}</TableCell>
-                  <TableCell>{incident.capa}</TableCell>
-                  <TableCell align="center">
-                    <IconButton color="primary" onClick={() => handleView(incident)}>
-                      <Visibility />
-                    </IconButton>
-                  </TableCell>
+              {recentIncidents.map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell>{row.id}</TableCell>
+                  <TableCell>{row.site}</TableCell>
+                  <TableCell>{row.type}</TableCell>
+                  <TableCell>{row.severity}</TableCell>
+                  <TableCell>{row.status}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-        </Paper>
+        </CardContent>
       </Card>
-
-      {/* View Dialog */}
-      <Dialog open={!!selectedIncident} onClose={handleClose} fullWidth maxWidth="sm">
-        <DialogTitle sx={{ bgcolor: "#0A3A6E", color: "#fff" }}>
-          {selectedIncident?.id} - {selectedIncident?.category}
-        </DialogTitle>
-        <DialogContent sx={{ mt: 2 }}>
-          {selectedIncident && (
-            <>
-              <Typography><strong>Date:</strong> {selectedIncident.date}</Typography>
-              <Typography><strong>Location:</strong> {selectedIncident.location}</Typography>
-              <Typography><strong>Status:</strong> {selectedIncident.status}</Typography>
-              <Typography><strong>CAPA:</strong> {selectedIncident.capa}</Typography>
-              <Typography><strong>Reporter:</strong> {selectedIncident.reporter}</Typography>
-              <Typography sx={{ mt: 2 }}>
-                <strong>Description:</strong> {selectedIncident.description}
-              </Typography>
-            </>
-          )}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary" variant="contained">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
     </Box>
   );
 };

@@ -248,8 +248,8 @@ const IncidentReporting = () => {
         >
           {editingId ? "Update Incident" : "Report New Incident"}
            <IconButton onClick={() => setOpen(false)} sx={{ color: "#fff" }}>
-                                                                                    <Close />
-                                                                                  </IconButton>
+          <Close />
+          </IconButton>
         </DialogTitle>
         <DialogContent
           sx={{

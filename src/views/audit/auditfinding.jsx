@@ -36,6 +36,7 @@ import {
   Person,
   Download,
   Close,
+  AddCircle
 } from "@mui/icons-material";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -237,8 +238,8 @@ const handleDownloadAll = () => {
           }
           action={
             <Stack direction="row" spacing={1}>
-              <Button variant="contained" sx={{ bgcolor: "#0A3A6E" }} onClick={() => handleOpen()}>
-                + Add Finding
+              <Button variant="contained"  startIcon={<AddCircle />} sx={{ bgcolor: "#0A3A6E" }} onClick={() => handleOpen()}>
+                Add Finding
               </Button>
               <Button
                 variant="outlined"
